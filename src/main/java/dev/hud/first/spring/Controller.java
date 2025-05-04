@@ -13,6 +13,11 @@ public class Controller {
 		return "primeira mensagem nessa rota";
 	}
 	
+	@GetMapping("/num")
+	public int msg() {
+		return 4010;
+	}
+	
 	
 	
 }
