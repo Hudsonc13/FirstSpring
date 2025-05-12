@@ -1,25 +1,26 @@
 package dev.hud.first.spring;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import missoes.MissoesModel;
 
 @Entity //transforma uma classe em uma entidade do banco de dados
 @Table(name = "tb_cadastro")
-public class PessoaModel {
+public class NinjaModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String nome, email;
 	private int idade;
-	
-	public PessoaModel() {
+
+	@ManyToOne
+	@JoinColumn(name = "missoes_id")
+	private MissoesModel missoes;
+
+	public NinjaModel() {
 	}
 	
-	public PessoaModel(String nome, String email, int idade) {
+	public NinjaModel(String nome, String email, int idade) {
 		this.nome = nome;
 		this.email = email;
 		this.idade = idade;
