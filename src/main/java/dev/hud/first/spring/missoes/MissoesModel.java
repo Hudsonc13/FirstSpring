@@ -1,6 +1,6 @@
-package missoes;
+package dev.hud.first.spring.missoes;
 
-import dev.hud.first.spring.NinjaModel;
+import dev.hud.first.spring.ninja.NinjaModel;
 import jakarta.persistence.*;
 import lombok.*;
 
