@@ -1,5 +1,6 @@
 package dev.hud.first.spring.missoes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.hud.first.spring.ninja.NinjaModel;
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,6 +20,7 @@ public class MissoesModel {
 	private String nome, dificuldade;
 
 	@OneToMany(mappedBy = "missoes")
+	@JsonIgnore
 	private List<NinjaModel> ninjas;
 
 
