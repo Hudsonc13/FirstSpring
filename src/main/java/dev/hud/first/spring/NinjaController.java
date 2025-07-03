@@ -36,12 +36,17 @@ public class NinjaController {
 		return ninjaService.listarTodos();
 	}
 
-	//Edita informações
+	@GetMapping("/listarTodos/{id}")
+	public NinjaModel listarTodosPorId(@PathVariable Long id) {
+		return ninjaService.buscarPorId(id);
+	}
+
+	//Edita (Cria) informações
 	// @PostMapping
 
-	@PostMapping("/createuser")
-	public String create() {
-		return "Cria usuario (Em breve)";
+	@PostMapping("/criarNinja")
+	public NinjaModel create(@RequestBody NinjaModel ninja) {
+		return ninjaService.criarNinja(ninja);
 	}
 
 	//Atualiza
@@ -53,9 +58,9 @@ public class NinjaController {
 
 	//Remove
 	// @DeleteMapping
-	@DeleteMapping("/delete")
-	public String delete() {
-		return "Deleta usuario (Em breve)";
+	@DeleteMapping("/delete/{id}")
+	public void delete(@PathVariable Long id) {
+		ninjaService.deletarNinja(id);
 	}
 	
 	
