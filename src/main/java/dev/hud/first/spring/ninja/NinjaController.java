@@ -1,7 +1,5 @@
-package dev.hud.first.spring;
+package dev.hud.first.spring.ninja;
 
-import dev.hud.first.spring.ninja.NinjaModel;
-import dev.hud.first.spring.ninja.NinjaService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,12 +8,12 @@ import java.util.List;
 @RequestMapping("/ninjas")
 public class NinjaController {
 
-	private NinjaService ninjaService;
+	final private NinjaService ninjaService;
 
-	private NinjaController(NinjaService ninjaService) {
+
+	public NinjaController(NinjaService ninjaService) {
 		this.ninjaService = ninjaService;
 	}
-
 
 	@GetMapping("/boasvindas")
 	public String mensagem() {
@@ -32,12 +30,12 @@ public class NinjaController {
 	// @GetMapping
 
 	@GetMapping("/listarTodos")
-	public List<NinjaModel> listarTodos() {
+	public List<NinjaDTO> listarTodos() {
 		return ninjaService.listarTodos();
 	}
 
 	@GetMapping("/listarTodos/{id}")
-	public NinjaModel listarTodosPorId(@PathVariable Long id) {
+	public NinjaDTO listarTodosPorId(@PathVariable Long id) {
 		return ninjaService.buscarPorId(id);
 	}
 
@@ -45,24 +43,28 @@ public class NinjaController {
 	// @PostMapping
 
 	@PostMapping("/criarNinja")
-	public NinjaModel create(@RequestBody NinjaModel ninja) {
+	public NinjaDTO create(@RequestBody NinjaDTO ninja) {
 		return ninjaService.criarNinja(ninja);
 	}
 
 	//Atualiza
 	// @PutMapping
-	@PutMapping("/edit")
-	public String edit() {
-		return "Edita informações (Em breve)";
+	@PutMapping("/edit/{id}")
+	public NinjaDTO edit(@PathVariable Long id, @RequestBody NinjaDTO ninja) {
+		return ninjaService.atualizarNinja(id, ninja);
 	}
 
 	//Remove
 	// @DeleteMapping
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable Long id) {
-		ninjaService.deletarNinja(id);
+	public void delete(@PathVariable Long id) throws Exception {
+		if (!ninjaService.deletarNinja(id)) {
+			throw new Exception();
+
+		}
+
 	}
-	
-	
+
+
 	
 }
