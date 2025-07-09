@@ -34,25 +34,5 @@ public class NinjaMapper {
         return ninjaDTO;
     }
 
-    public List<NinjaDTO> map(List<NinjaModel> ninjaModel) {
-        List<NinjaDTO> ninjaDTOList = new ArrayList<>();
-
-        for (NinjaModel ninjaModel1 : ninjaModel) {
-            NinjaDTO ninjaDTO = new NinjaDTO();
-
-            ninjaDTO.setId(ninjaModel1.getId());
-            ninjaDTO.setNome(ninjaModel1.getNome());
-            ninjaDTO.setIdade(ninjaModel1.getIdade());
-            ninjaDTO.setEmail(ninjaModel1.getEmail());
-            ninjaDTO.setMissoes(ninjaModel1.getMissoes());
-            ninjaDTO.setRank(ninjaModel1.getRank());
-
-            ninjaDTOList.add(ninjaDTO);
-        }
-
-
-        return ninjaDTOList;
-    }
-
 
 }

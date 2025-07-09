@@ -17,7 +17,12 @@ public class MissoesModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String nome, dificuldade;
+
+	@Column(unique = true, name = "nome")
+	private String nome;
+
+	@Column(name = "dificuldade")
+	private String dificuldade;
 
 	@OneToMany(mappedBy = "missoes")
 	@JsonIgnore

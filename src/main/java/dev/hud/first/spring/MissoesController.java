@@ -1,12 +1,9 @@
 package dev.hud.first.spring;
 
 
-import dev.hud.first.spring.missoes.MissoesModel;
+import dev.hud.first.spring.missoes.MissoesDTO;
 import dev.hud.first.spring.missoes.MissoesService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,13 +20,18 @@ public class MissoesController {
     }
 
     @GetMapping("/TodasMissoes")
-    public List<MissoesModel> TodasMissoes() {
+    public List<MissoesDTO> TodasMissoes() {
         return missoesService.listarTodasMissoes();
     }
 
     @GetMapping("/TodasMissoes/{id}")
-    public MissoesModel TodasMissoesPorId(@PathVariable Long id) {
+    public MissoesDTO TodasMissoesPorId(@PathVariable Long id) {
         return missoesService.buscarPorId(id);
+    }
+
+    @PostMapping("/publicarMissao")
+    public MissoesDTO save(@RequestBody MissoesDTO missoesDTO) {
+        return missoesService.salvar(missoesDTO);
     }
 
 
